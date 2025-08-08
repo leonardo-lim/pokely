@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Provider } from './provider';
 import './globals.css';
 
 const metadata: Metadata = {
@@ -12,8 +13,10 @@ interface RootLayoutProps {
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
     return (
-        <html lang="en">
-            <body>{children}</body>
+        <html lang="en" suppressHydrationWarning>
+            <body>
+                <Provider>{children}</Provider>
+            </body>
         </html>
     );
 };
