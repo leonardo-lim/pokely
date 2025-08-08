@@ -219,5 +219,15 @@
                 "ignoreEOLComments": true
             }
         ]
-    }
+    },
+    "overrides": [
+        {
+            "files": [
+                "./src/lib/icon.tsx"
+            ],
+            "rules": {
+                "max-len": "off"
+            }
+        }
+    ]
 }
