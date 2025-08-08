@@ -1,6 +1,12 @@
 import type { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
 import { Provider } from './provider';
 import './globals.css';
+
+const poppins = Poppins({
+    subsets: ['latin'],
+    weight: ['400', '500', '600', '700']
+});
 
 const metadata: Metadata = {
     title: 'Pokely',
@@ -14,7 +20,7 @@ interface RootLayoutProps {
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body>
+            <body className={poppins.className}>
                 <Provider>{children}</Provider>
             </body>
         </html>
