@@ -6,10 +6,23 @@ import { Box, For, Text, VStack } from '@chakra-ui/react';
 import { typeColors } from '@/lib/type-color';
 
 interface PokeCardProps {
+    index: number;
     pokemon: Pokemon;
+    setIsDetailsOpen: (open: boolean) => void;
+    setSelectedPokemonIndex: (index: number) => void;
 }
 
-const PokeCard: React.FC<PokeCardProps> = ({ pokemon }) => {
+const PokeCard: React.FC<PokeCardProps> = ({
+    index,
+    pokemon,
+    setIsDetailsOpen,
+    setSelectedPokemonIndex
+}) => {
+    const seePokemonDetails = () => {
+        setIsDetailsOpen(true);
+        setSelectedPokemonIndex(index);
+    };
+
     return (
         <VStack
             align="start"
@@ -20,6 +33,8 @@ const PokeCard: React.FC<PokeCardProps> = ({ pokemon }) => {
             borderRadius={24}
             boxShadow="3px 3px 6px 2px rgba(0, 0, 0, 0.1)"
             overflow="hidden"
+            cursor="pointer"
+            onClick={seePokemonDetails}
         >
             <Text
                 fontSize={[18, 18, 20, 20, 24]}

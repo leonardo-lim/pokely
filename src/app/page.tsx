@@ -7,6 +7,7 @@ import { For, Grid, GridItem, HStack, IconButton, Spinner, Text, VStack } from '
 import { AngleLeft, AngleRight } from '@/lib/icon';
 import axiosInstance from '@/lib/axios-instance';
 import PokeCard from '@/components/PokeCard';
+import PokeDetails from '@/components/poke-details/PokeDetails';
 
 const LIMIT = 20;
 
@@ -14,6 +15,9 @@ const Home: NextPage = () => {
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
     const [offset, setOffset] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+
+    const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+    const [selectedPokemonIndex, setSelectedPokemonIndex] = useState(0);
 
     const pokemonTotal = useRef(0);
 
@@ -76,9 +80,14 @@ const Home: NextPage = () => {
                         w="100%"
                     >
                         <For each={pokemons}>
-                            {(pokemon, pokemonIdx) => (
-                                <GridItem key={pokemonIdx}>
-                                    <PokeCard pokemon={pokemon} />
+                            {(pokemon, idx) => (
+                                <GridItem key={idx}>
+                                    <PokeCard
+                                        index={idx}
+                                        pokemon={pokemon}
+                                        setIsDetailsOpen={setIsDetailsOpen}
+                                        setSelectedPokemonIndex={setSelectedPokemonIndex}
+                                    />
                                 </GridItem>
                             )}
                         </For>
@@ -111,6 +120,13 @@ const Home: NextPage = () => {
                         </IconButton>
                     </HStack>
                 </VStack>
+            )}
+            {pokemons.length > 0 && (
+                <PokeDetails
+                    pokemon={pokemons[selectedPokemonIndex]}
+                    isDetailsOpen={isDetailsOpen}
+                    setIsDetailsOpen={setIsDetailsOpen}
+                />
             )}
         </VStack>
     );
