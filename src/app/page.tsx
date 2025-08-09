@@ -85,7 +85,7 @@ const Home: NextPage = () => {
                     </Grid>
                     <HStack>
                         <IconButton
-                            variant="solid"
+                            variant="plain"
                             borderRadius={12}
                             onClick={handlePreviousPokemons}
                             disabled={offset === 0}
@@ -98,7 +98,7 @@ const Home: NextPage = () => {
                         </IconButton>
                         <Text>{offset + 1} - {offset + LIMIT} of {pokemonTotal.current}</Text>
                         <IconButton
-                            variant="solid"
+                            variant="plain"
                             borderRadius={12}
                             onClick={handleNextPokemons}
                             disabled={offset + LIMIT >= pokemonTotal.current}
